@@ -1,0 +1,19 @@
+html,
+body,
+:root {
+	color-scheme: light dark;
+	height: auto;
+	width: auto;
+	margin: 0%;
+	font-family: Helvetica, Arial, sans-serif;
+	--color-a: #00171f;
+	--color-b: #003459;
+	--color-c: #007ea7;
+	--color-d: #00a8e8;
+	--color-e: #ffffff;
+}
+
+.App {
+	background-color: var(--color-a);
+	height: 100vh;
+}
