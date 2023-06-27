@@ -2,8 +2,9 @@ html,
 body,
 :root {
 	color-scheme: light dark;
-	height: auto;
-	width: auto;
+	overflow-x: hidden;
+	min-height: 100vh;
+	width: 100vw;
 	margin: 0%;
 	font-family: Helvetica, Arial, sans-serif;
 	--color-a: #00171f;
@@ -15,5 +16,21 @@ body,
 
 .App {
 	background-color: var(--color-a);
-	height: 100vh;
+	min-height: 100vh;
+	overflow-y: auto;
+}
+
+button {
+	border: none;
+	border-radius: 0.3rem;
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	background: var(--color-c);
+	color: var(--color-e);
+	transition: box-shadow 0.4s ease;
+}
+button:hover {
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+	background: radial-gradient(circle, var(--color-d), var(--color-c));
+	cursor: pointer;
 }
