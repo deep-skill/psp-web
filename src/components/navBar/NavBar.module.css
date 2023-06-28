@@ -1,0 +1,33 @@
+.navContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--color-b);
+	height: 4rem;
+	width: 100vw;
+	position: fixed;
+	z-index: 1;
+}
+
+.buttonPSP {
+	background-color: transparent;
+	box-shadow: none;
+	margin-left: 0.8rem;
+}
+.buttonPSP:hover {
+	box-shadow: none;
+	background: none;
+	cursor: pointer;
+}
+
+.divPSP {
+	display: flex;
+	align-items: center;
+}
+.divPSP b {
+	font-size: 2rem;
+}
+
+.buttonGraphic {
+	margin-right: 2rem;
+}

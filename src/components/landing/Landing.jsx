@@ -3,7 +3,8 @@ import style from "./Landing.module.css";
 const Landing = () => {
 	return (
 		<div className={style.landingContainer}>
-			Hello World!
+			<br />
+			This is landing page
 		</div>
 	);
 };
