@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--color-b);
-	height: 4rem;
+	height: var(--nav-bar-h);
 	width: 100vw;
 	position: fixed;
 	z-index: 1;

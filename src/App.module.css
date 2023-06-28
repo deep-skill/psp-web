@@ -1,23 +1,32 @@
 html,
 body,
 :root {
-	color-scheme: light dark;
 	overflow-x: hidden;
 	min-height: 100vh;
 	width: 100vw;
 	margin: 0%;
-	font-family: Helvetica, Arial, sans-serif;
+	color-scheme: light dark;
 	--color-a: #00171f;
 	--color-b: #003459;
 	--color-c: #007ea7;
 	--color-d: #00a8e8;
 	--color-e: #ffffff;
+	--nav-bar-h: 5rem;
+	--footer-h: 10rem;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 .App {
 	background-color: var(--color-a);
 	min-height: 100vh;
 	overflow-y: auto;
+}
+
+.routes {
+	padding-top: var(--nav-bar-h);
+	min-height: calc(100vh - var(--nav-bar-h) - var(--footer-h));
+	padding-left: 1rem;
+	padding-right: 2rem;
 }
 
 button {
@@ -32,5 +41,44 @@ button {
 button:hover {
 	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
 	background: radial-gradient(circle, var(--color-d), var(--color-c));
+	cursor: pointer;
+}
+
+input {
+	border: solid;
+	max-width: 100%;
+	overflow-x: hidden;
+	height: 1rem;
+	padding-top: 0.2rem;
+	padding-left: 1.1rem;
+	border-radius: 0.3rem;
+	background-color: var(--color-a);
+	border-width: 2px;
+	border-color: var(--color-b);
+	transition: border-color 0.5s ease;
+}
+input:hover,
+input:focus {
+	border-color: var(--color-c) !important;
+	border-width: 2px;
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+span {
+	display: flex;
+	align-items: center;
+	margin-top: 0.7rem;
+}
+
+select {
+	background-color: var(--color-b);
+	border-color: var(--color-a);
+	border-radius: 0.3rem;
+}
+select:hover {
 	cursor: pointer;
 }
