@@ -1,0 +1,9 @@
+.probabilityContainer .on {
+	border: solid;
+	border-color: var(--color-a);
+}
+.probabilityContainer .off {
+	border: solid;
+	background-color: var(--color-b);
+	border-color: var(--color-a);
+}
