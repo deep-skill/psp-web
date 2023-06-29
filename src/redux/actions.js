@@ -1,34 +1,74 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	buttonOn: false,
-	value: 0,
+	normSelected: "",
+	soilSelected: "",
+	norms: null,
+	soils: null,
+	periodSelected: {},
+	returnPeriodInputted: 0,
+	returnPeriodSelected: {},
 };
 
 export const slice = createSlice({
 	name: "globalState",
 	initialState,
 	reducers: {
-		changeButtonOn: (state) => {
-			state.buttonOn = !state.buttonOn;
+		setNorms: (state, { payload }) => {
+			state.norms = payload.norms;
 		},
-		incrementByAmount: (state, action) => {
-			state.value += action.payload;
+		selectNorm: (state, { payload }) => {
+			state.normSelected = payload;
+			const norm = state.norms.find((norm) => norm.value === payload);
+			state.soils = norm?.soils;
+			state.soilSelected = "";
+		},
+		selectSoil: (state, { payload }) => {
+			state.soilSelected = payload;
+		},
+		selectPeriod: (state, { payload }) => {
+			state.periodSelected[payload] = !state.periodSelected[payload];
+		},
+		inputReturnPeriod: (state, { payload }) => {
+			console.log(payload);
+			state.returnPeriodInputted = payload;
+		},
+		selectReturnPeriod: (state, { payload }) => {
+			state.returnPeriodSelected[payload] = !state.returnPeriodSelected[payload];
 		},
 	},
 });
-export const { changeButtonOn, incrementByAmount } = slice.actions;
+export const {
+	setNorms,
+	selectNorm,
+	selectSoil,
+	selectPeriod,
+	inputReturnPeriod,
+	selectReturnPeriod,
+} = slice.actions;
 export default slice.reducer;
+
+// simulate request to backend
+export const getNorms = () => {
+	return (dispatch) => {
+		fetch("/norms.json")
+			.then((response) => response.json())
+			.then((data) => dispatch(setNorms(data)))
+			.catch((error) => {
+				console.log(error.message);
+			});
+	};
+};
 
 // ---------- actions with axios ----------
 
+// example
 export const getServer = (info) => {
 	return async (dispatch) => {
 		await axios
-			.get("/", info)
+			.get("/route", info)
 			.then((res) => res.data)
-			.then((data) => dispatch(incrementByAmount(data)))
+			.then((data) => dispatch(actionReducer(data)))
 			.catch((err) => alert(err.response.data.error));
-		return;
 	};
 };

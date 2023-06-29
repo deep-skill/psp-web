@@ -1,6 +1,6 @@
 import style from "./Graphic.module.css";
-// import AnnualProbabilityOfLeave from "./helpers/annualProbabilityOfLeave/AnnualProbabilityOfLeave";
-// import UniformHazardSpectrum from "./helpers/uniformHazardSpectrum/UniformHazardSpectrum";
+import AnnualProbabilityOfLeave from "./helpers/annualProbabilityOfLeave/AnnualProbabilityOfLeave";
+import UniformHazardSpectrum from "./helpers/uniformHazardSpectrum/UniformHazardSpectrum";
 
 const Graphic = () => {
 	return (
@@ -15,11 +15,11 @@ const Graphic = () => {
 
 			<br />
 
-			{/* <AnnualProbabilityOfLeave /> */}
+			<AnnualProbabilityOfLeave />
 
 			<br />
 
-			{/* <UniformHazardSpectrum /> */}
+			<UniformHazardSpectrum />
 		</div>
 	);
 };
