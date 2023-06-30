@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+	location: { lat: -12.0, lng: -77.0 },
 	normSelected: "",
 	soilSelected: "",
 	norms: null,
@@ -14,6 +15,9 @@ export const slice = createSlice({
 	name: "globalState",
 	initialState,
 	reducers: {
+		setLocation: (state, { payload }) => {
+			state.location = payload;
+		},
 		setNorms: (state, { payload }) => {
 			state.norms = payload.norms;
 		},
@@ -39,6 +43,7 @@ export const slice = createSlice({
 	},
 });
 export const {
+	setLocation,
 	setNorms,
 	selectNorm,
 	selectSoil,
