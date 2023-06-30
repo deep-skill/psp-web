@@ -1,0 +1,14 @@
+.graphicContainer .buttonToMap {
+	background-color: transparent;
+	border-radius: 0.5rem;
+	border: solid;
+	border-color: var(--color-b);
+
+	margin: 0.8rem;
+	padding: 0.3rem;
+	font-size: 18px;
+}
+
+.graphicContainer h4 {
+	margin: 0;
+}
