@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/navBar/NavBar";
 import Landing from "./components/landing/Landing";
 import Graphic from "./components/graphic/Graphic";
-// import Footer from "./components/footer/Footer";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
 	return (
@@ -15,7 +15,7 @@ const App = () => {
 					<Route path="/graphic" element={<Graphic />} />
 				</Routes>
 			</div>
-			{/* <Footer /> */}
+			<Footer />
 		</div>
 	);
 };
