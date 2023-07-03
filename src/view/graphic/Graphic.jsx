@@ -1,11 +1,11 @@
 import style from "./Graphic.module.css";
-import "./helpers/map/ViewMap.css";
+import "../../components/map/ViewMap.css";
 import { CSSTransition } from "react-transition-group";
-import Map from "./helpers/map/Map";
+import Map from "../../components/map/Map";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AnnualProbabilityOfLeave from "./helpers/annualProbabilityOfLeave/AnnualProbabilityOfLeave";
-import UniformHazardSpectrum from "./helpers/uniformHazardSpectrum/UniformHazardSpectrum";
+import AnnualProbabilityOfLeave from "../../components/annualProbability/AnnualProbability";
+import UniformHazardSpectrum from "../../components/uniformHazard/UniformHazard";
 import { setLocation } from "../../redux/actions";
 
 const Graphic = () => {

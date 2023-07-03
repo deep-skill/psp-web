@@ -1,7 +1,7 @@
 import axios from "axios";
-import { setNorms } from "./actions";
+import { setNorms } from "../../redux/actions";
 
-export const getStandard = () => {
+export const getStandards = () => {
 	return async (dispatch) => {
 		await axios
 			.get("/standards")

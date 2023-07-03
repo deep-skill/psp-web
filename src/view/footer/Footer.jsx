@@ -7,7 +7,7 @@ import {
 	PhoneIcon,
 	SeismicIcon,
 	WhatsappCircleIcon,
-} from "../zHelpers/icons";
+} from "../../Helpers/icons/";
 
 const Footer = () => {
 	return (
