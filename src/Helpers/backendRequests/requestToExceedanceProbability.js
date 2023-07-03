@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const requestToHazardSpectrum = async (location, tr) => {
+const requestToExceedanceProbability = async (location, period) => {
   try {
     const { data } = await axios(
-      `/hazardspectrum?location=${location}&tr=${tr}`
+      `/eprobability?location=${location}&period=${period}`
     );
     const series = [];
 
@@ -20,4 +20,4 @@ const requestToHazardSpectrum = async (location, tr) => {
   }
 };
 
-export default requestToHazardSpectrum;
+export default requestToExceedanceProbability;
