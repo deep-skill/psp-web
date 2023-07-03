@@ -1,13 +1,13 @@
 import style from "./UniformHazard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-	getNorms,
 	selectNorm,
 	selectSoil,
 	inputReturnPeriod,
 	selectReturnPeriod,
 } from "../../../../redux/actions";
 import { useEffect, useState } from "react";
+import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
 
 const UniformHazard = () => {
 	const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const UniformHazard = () => {
 	};
 
 	useEffect(() => {
-		!norms && dispatch(getNorms());
+		!norms && dispatch(getStandards());
 	}, []);
 
 	return (

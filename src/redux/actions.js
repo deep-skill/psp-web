@@ -19,12 +19,12 @@ export const slice = createSlice({
 			state.location = payload;
 		},
 		setNorms: (state, { payload }) => {
-			state.norms = payload.norms;
+			state.norms = payload;
 		},
 		selectNorm: (state, { payload }) => {
 			state.normSelected = payload;
 			const norm = state.norms.find((norm) => norm.value === payload);
-			state.soils = norm?.soils;
+			state.soils = norm?.soilType;
 			state.soilSelected = "";
 		},
 		selectSoil: (state, { payload }) => {
@@ -52,28 +52,3 @@ export const {
 	selectReturnPeriod,
 } = slice.actions;
 export default slice.reducer;
-
-// simulate request to backend
-export const getNorms = () => {
-	return (dispatch) => {
-		fetch("/norms.json")
-			.then((response) => response.json())
-			.then((data) => dispatch(setNorms(data)))
-			.catch((error) => {
-				console.log(error.message);
-			});
-	};
-};
-
-// ---------- actions with axios ----------
-
-// example
-export const getServer = (info) => {
-	return async (dispatch) => {
-		await axios
-			.get("/route", info)
-			.then((res) => res.data)
-			.then((data) => dispatch(actionReducer(data)))
-			.catch((err) => alert(err.response.data.error));
-	};
-};
