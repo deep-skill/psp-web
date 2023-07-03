@@ -1,4 +1,4 @@
-import style from "./UniformHazardSpectrum.module.css";
+import style from "./UniformHazard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	getNorms,
@@ -9,7 +9,7 @@ import {
 } from "../../../../redux/actions";
 import { useEffect, useState } from "react";
 
-const UniformHazardSpectrum = () => {
+const UniformHazard = () => {
 	const dispatch = useDispatch();
 
 	const onSearch = () => {
@@ -89,4 +89,4 @@ const UniformHazardSpectrum = () => {
 	);
 };
 
-export default UniformHazardSpectrum;
+export default UniformHazard;

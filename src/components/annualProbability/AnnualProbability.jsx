@@ -1,10 +1,10 @@
-import style from "./AnnualProbabilityOfLeave.module.css";
+import style from "./AnnualProbability.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPeriod } from "../../../../redux/actions";
 
 import { setPeriod, setPeriodPercentage } from "./setPeriod";
 
-const AnnualProbabilityOfLeave = () => {
+const AnnualProbability = () => {
 	const dispatch = useDispatch();
 
 	const periods = setPeriod();
@@ -46,4 +46,4 @@ const AnnualProbabilityOfLeave = () => {
 	);
 };
 
-export default AnnualProbabilityOfLeave;
+export default AnnualProbability;
