@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import App from "./App.jsx";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001/psp";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
