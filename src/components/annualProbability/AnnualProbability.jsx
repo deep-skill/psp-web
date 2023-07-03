@@ -1,6 +1,6 @@
 import style from "./AnnualProbability.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPeriod } from "../../../../redux/actions";
+import { selectPeriod } from "../../redux/actions";
 
 import { setPeriod, setPeriodPercentage } from "./setPeriod";
 

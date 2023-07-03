@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import style from "./NavBar.module.css";
-import AnimatedSeismicIcon from "../zHelpers/icons/AnimatedSeismicIcon";
+import AnimatedSeismicIcon from "../../Helpers/icons/AnimatedSeismicIcon";
 
 const NavBar = () => {
 	const location = useLocation();

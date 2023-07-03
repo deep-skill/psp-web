@@ -1,9 +1,9 @@
 import style from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/navBar/NavBar";
-import Landing from "./components/landing/Landing";
-import Graphic from "./components/graphic/Graphic";
-import Footer from "./components/footer/Footer";
+import NavBar from "./view/navBar/NavBar";
+import Landing from "./view/landing/Landing";
+import Graphic from "./view/graphic/Graphic";
+import Footer from "./view/footer/Footer";
 
 const App = () => {
 	return (

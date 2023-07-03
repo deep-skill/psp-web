@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import classNames from "classnames";
 import style from "./Map.module.css";
-import { ResetIcon, CancelIcon } from "../../../zHelpers/icons";
+import { ResetIcon, CancelIcon } from "../../Helpers/icons";
 
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";

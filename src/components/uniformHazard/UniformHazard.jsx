@@ -5,7 +5,7 @@ import {
 	selectSoil,
 	inputReturnPeriod,
 	selectReturnPeriod,
-} from "../../../../redux/actions";
+} from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
 
