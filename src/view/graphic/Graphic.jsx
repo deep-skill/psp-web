@@ -17,11 +17,12 @@ const Graphic = () => {
 	const handleClick = () => {
 		setViewMap(!viewMap);
 	};
-	
+
 	const handleClickSelect = (location) => {
 		dispatch(requestToLocation(location, dispatch));
 		handleMapClose();
-	}
+	};
+
 	const handleMapClose = () => {
 		setViewMap(false);
 	};
@@ -35,13 +36,20 @@ const Graphic = () => {
 				classNames="viewMap"
 				unmountOnExit
 			>
-				<Map ref={nodeRef} savedLocation={location} handleClickSelect={handleClickSelect} handleClose={handleMapClose}/>
+				<Map
+					ref={nodeRef}
+					savedLocation={location}
+					handleClickSelect={handleClickSelect}
+					handleClose={handleMapClose}
+				/>
 			</CSSTransition>
 
 			<br />
 
 			<button className={style.buttonToMap} onClick={handleClick}>
-				{location.lat.length > 0 ? `Latitud: ${location.lat}, Longitud: ${location.lng}` : 'Seleccionar coordenadas'}
+				{location.lat.length !== 0
+					? `Latitud: ${location.lat}, Longitud: ${location.lng}`
+					: "Seleccionar coordenadas"}
 			</button>
 
 			<br />

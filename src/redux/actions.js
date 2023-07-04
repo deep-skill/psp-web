@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   location: {
     id: "",
-    lat: -12.1,
-    lng: -77.1,
+    lat: "",
+    lng: "",
     exceedanceProbability: {},
     hazardSpectrum: {},
     designSpectrum: [],
