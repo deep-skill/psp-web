@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
+import DesignSpectrumChart from "../chartsComponents/desingSpectrumChart/DesignSpectrumChart";
 
 const UniformHazard = () => {
 	const dispatch = useDispatch();
@@ -84,7 +85,7 @@ const UniformHazard = () => {
 			</span>
 
 			<br />
-			{/* graph here */}
+			<DesignSpectrumChart />
 		</div>
 	);
 };

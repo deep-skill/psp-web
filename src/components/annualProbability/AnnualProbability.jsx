@@ -1,8 +1,9 @@
 import style from "./AnnualProbability.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPeriod } from "../../redux/actions";
-
+import { selectPeriod, selectDamping } from "../../redux/actions";
+import ExceedanceProbabilityChart from "../chartsComponents/ExceedanceProbabilityChart/ExceedanceProbabilityChart";
 import { setPeriod, setPeriodPercentage } from "./setPeriod";
+import requestToExceedanceProbability from "../../Helpers/backendRequests/requestToExceedanceProbability";
 
 const AnnualProbability = () => {
 	const dispatch = useDispatch();
@@ -10,11 +11,18 @@ const AnnualProbability = () => {
 	const periods = setPeriod();
 	const periodsPercentage = setPeriodPercentage();
 
-	const periodSelected = useSelector(
-		(state) => state.slice.periodSelected
-	);
+	const id = useSelector(state => state.slice.location.id);
+	const dampingSelected = useSelector(state => state.slice.dampingSelected);
+	const exceedanceProbability = useSelector(state => state.slice.location.exceedanceProbability)
 
-	const handleChange = () => {};
+	const handleChange = (event) => {
+		const {value} = event.target;
+		if(value){
+			dispatch(selectPeriod(value));
+			if(exceedanceProbability.hasOwnProperty(value)) return;
+			dispatch(requestToExceedanceProbability(id,value))
+		}
+	};
 
 	return (
 		<div className={style.probabilityContainer}>
@@ -22,6 +30,9 @@ const AnnualProbability = () => {
 			<span>
 				<h4>Periodos:</h4>
 				<select name="byPeriod" onChange={handleChange}>
+						<option value="" key={"seleccionar"}>
+							Seleccionar
+						</option>
 					{periods?.map((period) => (
 						<option value={period.toString()} key={period.toString()}>
 							{period.toString()}
@@ -32,8 +43,8 @@ const AnnualProbability = () => {
 				{periodsPercentage?.map((period) => (
 					<button
 						key={period.toString() + "%"}
-						onClick={() => dispatch(selectPeriod(period.toString()))}
-						className={periodSelected[period] ? style.on : style.off}
+						onClick={() => dispatch(selectDamping(period.toString()))}
+						className={dampingSelected[period] ? style.on : style.off}
 					>
 						{period.toString() + "%"}
 					</button>
@@ -41,7 +52,7 @@ const AnnualProbability = () => {
 			</span>
 
 			<br />
-			{/* graph here */}
+			<ExceedanceProbabilityChart />
 		</div>
 	);
 };

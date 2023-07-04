@@ -14,6 +14,7 @@ body,
 	--nav-bar-h: 5rem;
 	--footer-h: 10rem;
 	font-family: Helvetica, Arial, sans-serif;
+	color: #ffffff;
 }
 
 .App {
@@ -56,6 +57,7 @@ input {
 	border-width: 2px;
 	border-color: var(--color-b);
 	transition: border-color 0.5s ease;
+	color: #ffffff;
 }
 input:hover,
 input:focus {
@@ -78,6 +80,7 @@ select {
 	background-color: var(--color-b);
 	border-color: var(--color-a);
 	border-radius: 0.3rem;
+	color: #ffffff;
 }
 select:hover {
 	cursor: pointer;
