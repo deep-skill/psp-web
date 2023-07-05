@@ -1,17 +1,23 @@
 const options = {
   chart: {
-    renderTo: "container",
+    spacing: [30, 10, 5, 10],
+    backgroundColor: '#003459',
+    borderRadius: 5,
     type: "line",
     zoomType: "xy",
   },
   title: {
     text: null,
-    x: -20, //center
+    x: -20, 
   },
   xAxis: {
     title: {
       text: "Aceleración espectral (g)",
+      style: {
+        color: "#fff"
+      }
     },
+    lineColor: "#fff",
     gridLineWidth: 1,
     gridZIndex: 4,
     labels: {
@@ -23,6 +29,9 @@ const options = {
   yAxis: {
     title: {
       text: "Probabilidad anual de excedencia (1/años)",
+      style: {
+        color: "#fff"
+      }
     },
     max: 0,
     min: -4,
@@ -31,19 +40,25 @@ const options = {
       {
         value: Math.log10(1 / 475),
         width: 1.5,
-        color: "#FA5858",
+        color: "#00A8E8",
         label: {
           text: "1/475 años",
           x: 50,
+          style: {
+            color: "#fff"
+          }
         },
       },
       {
         value: Math.log10(1 / 2475),
         width: 1.5,
-        color: "#FA5858",
+        color: "#00A8E8",
         label: {
           text: "1/2475 años",
           x: 50,
+          style: {
+            color: "#fff"
+          }
         },
       },
     ],
@@ -51,13 +66,19 @@ const options = {
       formatter: function () {
         return Math.pow(10, this.value).toFixed(4);
       },
+      style: {
+        color: "#fff"
+      }
     },
   },
   legend: {
     layout: "vertical",
-    align: "right",
-    verticalAlign: "middle",
+    align: "center",
+    verticalAlign: "bottom",
     borderWidth: 0,
+    itemStyle: {
+      color: "#fff"
+    }
   },
   plotOptions: {
     series: {
@@ -68,7 +89,7 @@ const options = {
   },
   series: [
     {
-      name: "5 %",
+      name: "5%",
       data: [],
     },
   ],
