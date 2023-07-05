@@ -16,7 +16,7 @@ const requestToExceedanceProbability = (location, period) => {
         ]);
       });
 
-      console.log("me llamaron ");
+      //console.log("requestToExceedanceProbability ");
 
       const result = { period: period, data: series };
 

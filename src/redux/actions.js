@@ -51,7 +51,7 @@ export const slice = createSlice({
       state.dampingSelected[payload] = !state.dampingSelected[payload];
     },
     inputReturnPeriod: (state, { payload }) => {
-      console.log(payload);
+      //console.log('inputReturnPeriod', payload);
       state.returnPeriodInputted = payload;
     },
     selectReturnPeriod: (state, { payload }) => {
@@ -59,7 +59,7 @@ export const slice = createSlice({
         !state.returnPeriodSelected[payload];
     },
     resultPeriod: (state, { payload }) => {
-		console.log(payload)
+		//console.log('resultPeriod ', payload)
       state.location.exceedanceProbability[payload.period] = payload.data;
     },
   },
