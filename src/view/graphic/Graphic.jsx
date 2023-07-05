@@ -6,50 +6,61 @@ import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AnnualProbabilityOfLeave from "../../components/annualProbability/AnnualProbability";
 import UniformHazardSpectrum from "../../components/uniformHazard/UniformHazard";
-import { setLocation } from "../../redux/actions";
+import requestToLocation from "../../Helpers/backendRequests/requestToLocation";
 
 const Graphic = () => {
-	const dispatch = useDispatch();
-	const nodeRef = useRef(null);
-	const [viewMap, setViewMap] = useState(false);
-	const location = useSelector((state) => state.slice.location);
+  const dispatch = useDispatch();
+  const nodeRef = useRef(null);
+  const [viewMap, setViewMap] = useState(false);
+  const location = useSelector((state) => state.slice.location);
 
-	const handleClick = () => {
-		setViewMap(!viewMap);
-	};
-	
-	const handleMapClose = (data) => {
-		dispatch(setLocation(data.location || location));
-		setViewMap(false);
-	};
+  const handleClick = () => {
+    setViewMap(!viewMap);
+  };
 
-	return (
-		<div className={style.graphicContainer}>
-			<CSSTransition
-				in={viewMap}
-				nodeRef={nodeRef}
-				timeout={500}
-				classNames="viewMap"
-				unmountOnExit
-			>
-				<Map ref={nodeRef} savedLocation={location} handleClose={handleMapClose} />
-			</CSSTransition>
+  const handleClickSelect = (location) => {
+    dispatch(requestToLocation(location, dispatch));
+    handleMapClose();
+  };
 
-			<br />
+  const handleMapClose = () => {
+    setViewMap(false);
+  };
 
-			<button className={style.buttonToMap} onClick={handleClick}>
-				Latitud: {location.lat}, Longitud: {location.lng}
-			</button>
+  return (
+    <div className={style.graphicContainer}>
+      <CSSTransition
+        in={viewMap}
+        nodeRef={nodeRef}
+        timeout={500}
+        classNames="viewMap"
+        unmountOnExit
+      >
+        <Map
+          ref={nodeRef}
+          savedLocation={location}
+          handleClickSelect={handleClickSelect}
+          handleClose={handleMapClose}
+        />
+      </CSSTransition>
 
-			<br />
+      <br />
 
-			<AnnualProbabilityOfLeave />
+      <button className={style.buttonToMap} onClick={handleClick}>
+        {location.lat.length !== 0
+          ? `Latitud: ${location.lat}, Longitud: ${location.lng}`
+          : "Seleccionar coordenadas"}
+      </button>
 
-			<br />
+      <br />
 
-			<UniformHazardSpectrum />
-		</div>
-	);
+      <AnnualProbabilityOfLeave />
+
+      <br />
+
+      <UniformHazardSpectrum />
+    </div>
+  );
 };
 
 export default Graphic;

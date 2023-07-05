@@ -1,23 +1,28 @@
 import axios from "axios";
+import { resultPeriod } from "../../redux/actions";
 
-const requestToExceedanceProbability = async (location, period) => {
-  try {
-    const { data } = await axios(
-      `/eprobability?location=${location}&period=${period}`
-    );
-    const series = [];
+const requestToExceedanceProbability = (location, period) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(
+        `/eprobability?location=${location}&period=${period}`
+      );
+      const series = [];
 
-    data.data.map((value) => {
-      series.push([
-        Math.log10(parseFloat(value.x)),
-        Math.log10(parseFloat(value.y)),
-      ]);
-    });
+      data.data.map((value) => {
+        series.push([
+          Math.log10(parseFloat(value.x)),
+          Math.log10(parseFloat(value.y)),
+        ]);
+      });
 
-    return series;
-  } catch (error) {
-    console.log(error);
-  }
+      const result = { period: period, data: series };
+
+      return dispatch(resultPeriod(result));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export default requestToExceedanceProbability;
