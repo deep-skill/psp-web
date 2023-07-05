@@ -1,7 +1,7 @@
 import style from "./AnnualProbability.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPeriod } from "../../redux/actions";
-
+import ExceedanceProbabilityChart from "../chartsComponents/ExceedanceProbabilityChart/ExceedanceProbabilityChart"
 import { setPeriod, setPeriodPercentage } from "./setPeriod";
 
 const AnnualProbability = () => {
@@ -41,7 +41,7 @@ const AnnualProbability = () => {
 			</span>
 
 			<br />
-			{/* graph here */}
+			<ExceedanceProbabilityChart />
 		</div>
 	);
 };

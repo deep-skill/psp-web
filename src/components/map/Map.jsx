@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
 });
 
 // savedLocation = { lat: -12.0, lng: -77.0 }
-const Map = forwardRef(({ savedLocation, handleClose }, ref) => {
+const Map = forwardRef(({ savedLocation, handleClickSelect, handleClose }, ref) => {
 	const mapRef = useRef(null);
 	const markerRef = useRef(L.marker(savedLocation));
 	const [location, setLocation] = useState(savedLocation);
@@ -30,7 +30,7 @@ const Map = forwardRef(({ savedLocation, handleClose }, ref) => {
 	};
 
 	const handleResetClick = () => {
-		setLocation({ lat: -12, lng: -77.0 });
+		setLocation({ lat: -12.1, lng: -77.1 });
 	};
 
 	const handleChange = (event) => {
@@ -55,6 +55,7 @@ const Map = forwardRef(({ savedLocation, handleClose }, ref) => {
 			mapRef.current.on("click", handleMapClick);
 			markerRef.current.addTo(mapRef.current);
 		}
+		if(location.lat.length === 0) setLocation({ lat: -12.1, lng: -77.1 });
 
 		mapRef.current.setView([location.lat, location.lng]);
 		markerRef.current.setLatLng([location.lat, location.lng]);
@@ -66,7 +67,7 @@ const Map = forwardRef(({ savedLocation, handleClose }, ref) => {
 			<div className={style.coordinatesContainer}>
 				<button
 					className={classNames(style.reset, style.cancel)}
-					onClick={() => handleClose({ location: false })}
+					onClick={() => handleClose()}
 				>
 					<CancelIcon />
 				</button>
@@ -92,7 +93,7 @@ const Map = forwardRef(({ savedLocation, handleClose }, ref) => {
 				</span>
 
 				<span>
-					<button onClick={() => handleClose({ location })}>Select</button>
+					<button onClick={() => handleClickSelect(location)}>Select</button>
 					<button className={style.reset} onClick={handleResetClick}>
 						<ResetIcon />
 					</button>
