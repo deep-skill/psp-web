@@ -1,9 +1,41 @@
-.probabilityContainer .on {
-	border: solid;
-	border-color: var(--color-a);
+.uniformHazardContainer .on {
+  border: solid;
+  border-color: var(--color-a);
 }
-.probabilityContainer .off {
-	border: solid;
-	background-color: var(--color-b);
-	border-color: var(--color-a);
+.uniformHazardContainer .off {
+  border: solid;
+  background-color: var(--color-b);
+  border-color: var(--color-a);
+}
+
+.uniformHazardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.uniformHazardContainer button {
+  height: 35px;
+  width: 65px;
+  margin: 5px;
+}
+
+.uniformHazardContainer input {
+  height: 30px;
+  line-height: 30px;
+  width: 90px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.uniformHazardContainer select {
+  height: 32px;
+  width: 180px;
+  margin: 10px 20px 10px 10px;
+}
+
+.chartContainer {
+  width: 85%;
+  margin-bottom: 3rem;
 }
