@@ -14,7 +14,7 @@ const initialState = {
   norms: null,
   soils: null,
   periodSelected: 0,
-  dampingSelected: {},
+  dampingSelected: ["5"],
   returnPeriodInputted: 0,
   returnPeriodSelected: {},
   historyLocation: [],
@@ -48,7 +48,21 @@ export const slice = createSlice({
       state.periodSelected = payload;
     },
     selectDamping: (state, { payload }) => {
-      state.dampingSelected[payload] = !state.dampingSelected[payload];
+      const dampingSelectedCopy = [...state.dampingSelected];
+      const dampingFound = state.dampingSelected.find(
+        (damping) => payload !== "5" && damping === payload
+      );
+      if (payload === -1) {
+        state.dampingSelected = ["5"];
+      } else if (dampingFound) {
+        state.dampingSelected = dampingSelectedCopy.filter(
+          (damping) => damping !== payload
+        );
+      } else {
+        if (payload !== "5") {
+          state.dampingSelected.push(payload);
+        }
+      }
     },
     inputReturnPeriod: (state, { payload }) => {
       state.returnPeriodInputted = payload;
