@@ -53,7 +53,7 @@ const options = {
     }],
     tooltip: {
         formatter: function() {
-            return '(' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ')';
+            return '(' + this.x.toFixed(4) + ', ' + this.y.toFixed(4) + ')';
         }
     }
 };
