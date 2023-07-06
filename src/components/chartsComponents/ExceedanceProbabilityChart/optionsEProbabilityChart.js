@@ -68,7 +68,7 @@ const options = {
   },
   series: [
     {
-      name: "5 %",
+      name: "5%",
       data: [],
     },
   ],

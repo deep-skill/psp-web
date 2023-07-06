@@ -24,6 +24,7 @@ const AnnualProbability = () => {
       if (value in exceedanceProbability) return;
       dispatch(requestToExceedanceProbability(id, value));
     }
+    dispatch(selectDamping(-1));
   };
 
   return (
@@ -37,7 +38,7 @@ const AnnualProbability = () => {
           </option>
           {periods?.map((period) => (
             <option value={period.toString()} key={period.toString()}>
-              {period.toString()}
+              {period === 0.075 ? period.toFixed(3) : period.toFixed(2)}
             </option>
           ))}
         </select>
@@ -46,7 +47,11 @@ const AnnualProbability = () => {
           <button
             key={period.toString() + "%"}
             onClick={() => dispatch(selectDamping(period.toString()))}
-            className={dampingSelected[period] ? style.on : style.off}
+            className={
+              dampingSelected.find((damping) => damping === period.toString())
+                ? style.on
+                : style.off
+            }
           >
             {period.toString() + "%"}
           </button>
@@ -54,7 +59,9 @@ const AnnualProbability = () => {
       </span>
 
       <br />
-      <ExceedanceProbabilityChart />
+      <div className={style.chartContainer}>
+        <ExceedanceProbabilityChart />
+      </div>
     </div>
   );
 };
