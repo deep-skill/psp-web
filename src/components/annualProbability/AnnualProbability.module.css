@@ -7,3 +7,27 @@
 	background-color: var(--color-b);
 	border-color: var(--color-a);
 }
+
+.probabilityContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.chartContainer {
+	width: 85%;
+}
+
+.probabilityContainer button {
+	height: 35px;
+	width: 50px;
+	margin: 2px;
+}
+
+.probabilityContainer select {
+	height: 32px;
+	width: 110px;
+	margin-left: 10px;
+	margin-right: 20px;
+}

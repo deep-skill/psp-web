@@ -10,6 +10,7 @@ import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
 import DesignSpectrumChart from "../chartsComponents/desingSpectrumChart/DesignSpectrumChart";
 import requestToHazardSpectrum from "../../Helpers/backendRequests/requestToHazardSpectrum";
 
+
 const UniformHazard = () => {
   const dispatch = useDispatch();
 
