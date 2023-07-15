@@ -3,26 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectNorm,
   selectSoil,
-  inputReturnPeriod,
   selectReturnPeriod,
 } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
 import DesignSpectrumChart from "../chartsComponents/desingSpectrumChart/DesignSpectrumChart";
+import requestToHazardSpectrum from "../../Helpers/backendRequests/requestToHazardSpectrum";
+
 
 const UniformHazard = () => {
   const dispatch = useDispatch();
 
-  const onSearch = () => {
-    dispatch(inputReturnPeriod(0));
-  };
-  const returnPeriodInputted = useSelector(
-    (state) => state.slice.returnPeriodInputted
-  );
+  const [inputPeriod, serInputPeriod] = useState("10");
 
+  const handlePeriod = (event) => {
+    const { value } = event.target;
+    if (value) {
+      dispatch(selectReturnPeriod(value));
+      if (value in hazardSpectrum) return;
+      dispatch(requestToHazardSpectrum(id, value));
+    }
+  };
+
+  const id = useSelector((state) => state.slice.location.id);
+  const hazardSpectrum = useSelector(
+    (state) => state.slice.location.hazardSpectrum
+  );
   const buttonsReturnPeriod = [475, 1000, 2475];
-  const returnPeriodSelected = useSelector(
-    (state) => state.slice.returnPeriodSelected
+  const returnPeriodActive = useSelector(
+    (state) => state.slice.returnPeriodActive
   );
 
   const norms = useSelector((state) => state.slice.norms);
@@ -41,22 +50,29 @@ const UniformHazard = () => {
   }, []);
 
   return (
-    <div className={style.uniformHazardContainer}>
+    <div className={style.probabilityContainer}>
       <h3>Espectro de Peligro Uniforme y Espectro de Diseño</h3>
       <span>
         <h4>Periodo de retorno en años:</h4>
         <input
           type="number"
-          value={returnPeriodInputted}
-          onChange={(event) => dispatch(inputReturnPeriod(event.target.value))}
+          value={inputPeriod}
+          onChange={(event) => serInputPeriod(event.target.value)}
         />
-        <button onClick={onSearch}>Calcular</button>
+        <button value={inputPeriod} onClick={handlePeriod}>
+          Calcular
+        </button>
 
         {buttonsReturnPeriod.map((button) => (
           <button
             key={button}
-            onClick={() => dispatch(selectReturnPeriod(button.toString()))}
-            className={returnPeriodSelected[button] ? style.on : style.off}
+            value={button}
+            onClick={handlePeriod}
+            className={
+              returnPeriodActive.includes(button.toString())
+                ? style.on
+                : style.off
+            }
           >
             {button}
           </button>
@@ -85,9 +101,7 @@ const UniformHazard = () => {
       </span>
 
       <br />
-      <div className={style.chartContainer}>
-        <DesignSpectrumChart />
-      </div>
+      <DesignSpectrumChart />
     </div>
   );
 };

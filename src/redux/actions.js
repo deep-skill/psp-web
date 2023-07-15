@@ -15,8 +15,8 @@ const initialState = {
   soils: null,
   periodSelected: 0,
   dampingSelected: ["5"],
-  returnPeriodInputted: 0,
-  returnPeriodSelected: {},
+  returnPeriodSelected: "",
+  returnPeriodActive: [],
   historyLocation: [],
 };
 
@@ -64,15 +64,25 @@ export const slice = createSlice({
         }
       }
     },
-    inputReturnPeriod: (state, { payload }) => {
-      state.returnPeriodInputted = payload;
-    },
     selectReturnPeriod: (state, { payload }) => {
-      state.returnPeriodSelected[payload] =
-        !state.returnPeriodSelected[payload];
+      const returnPeriodActiveCopy = [...state.returnPeriodActive];
+      const returnPeriod = returnPeriodActiveCopy.find(
+        (period) => period === payload
+      );
+      if (returnPeriod) {
+        state.returnPeriodActive = returnPeriodActiveCopy.filter(
+          (period) => period !== payload
+        );
+      } else {
+        if (state.returnPeriodActive.length < 4)
+          state.returnPeriodActive.push(payload);
+      }
     },
     resultPeriod: (state, { payload }) => {
       state.location.exceedanceProbability[payload.period] = payload.data;
+    },
+    resultReturnPeriod: (state, { payload }) => {
+      state.location.hazardSpectrum[payload.returnPeriod] = payload.data;
     },
   },
 });
@@ -86,5 +96,6 @@ export const {
   selectDamping,
   inputReturnPeriod,
   selectReturnPeriod,
+  resultReturnPeriod,
 } = slice.actions;
 export default slice.reducer;
