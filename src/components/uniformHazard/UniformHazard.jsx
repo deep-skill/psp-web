@@ -50,7 +50,7 @@ const UniformHazard = () => {
   }, []);
 
   return (
-    <div className={style.probabilityContainer}>
+    <div className={style.uniformHazardContainer}>
       <h3>Espectro de Peligro Uniforme y Espectro de Diseño</h3>
       <section>
         <h4>Periodo de retorno en años:</h4>

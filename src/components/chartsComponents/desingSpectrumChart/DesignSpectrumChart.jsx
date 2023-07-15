@@ -1,52 +1,60 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 import defaultOptions from "./optionsDesignSpectrumChart";
 import { useSelector } from "react-redux";
 
 const DesignSpectrumChart = () => {
-  const [options, setOptions] = useState(defaultOptions);
+  const chartRef = useRef(null);
 
   const hazardSpectrum = useSelector(
     (state) => state.slice.location.hazardSpectrum
   );
+
   const returnPeriodActive = useSelector(
     (state) => state.slice.returnPeriodActive
   );
 
   useEffect(() => {
-    let filteredSeries = options.series.filter((serie) =>
-      returnPeriodActive.includes(serie.name)
-    );
-    setOptions({
-      ...options,
-      series: [...filteredSeries],
-    });
+    if (chartRef.current) {
+      for (let i = 0; i < chartRef.current.series.length; i++) {
+        if (!returnPeriodActive.includes(chartRef.current.series[i].name)) {
+          removeSerie(i, chartRef.current);
+        }
+      }
+    }
   }, [returnPeriodActive]);
 
   useEffect(() => {
-    returnPeriodActive.map((period) => {
-      const hazardData = hazardSpectrum[period];
-      if (hazardData) {
-        const serieFound = options.series.findIndex(
-          (serie) => serie.name === period.toString()
+    returnPeriodActive?.map((period) => {
+      if (chartRef.current) {
+        let seriedFound = chartRef.current.series.findIndex(
+          (serie) => serie.name === period
         );
-        if (serieFound < 0) {
-          const newData = { name: period.toString(), data: hazardData };
-          setOptions((prevOptions) => ({
-            ...prevOptions,
-            series: [...prevOptions.series, newData],
-          }));
+        if (seriedFound < 0) {
+          let hazardData = hazardSpectrum[period];
+          if (hazardData) {
+            updateSerie({ name: period, data: hazardData }, chartRef.current);
+          }
         }
       }
     });
   }, [returnPeriodActive, hazardSpectrum]);
 
-  return (
-    <>
-      <HighchartsReact highcharts={Highcharts} options={options} />
-    </>
-  );
+  useEffect(() => {
+    const chart = Highcharts.chart("chart-container", defaultOptions);
+    chartRef.current = chart;
+  }, []);
+
+  const updateSerie = (dataserie, chart) => {
+    chart.addSeries(dataserie);
+  };
+
+  const removeSerie = (index, chart) => {
+    console.log(chart.series);
+    chart.series[index].remove();
+  };
+
+  return <div id="chart-container">{/* Renderizar el gráfico */}</div>;
 };
 
 export default DesignSpectrumChart;

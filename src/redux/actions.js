@@ -15,7 +15,6 @@ const initialState = {
   soils: null,
   periodSelected: 0,
   dampingSelected: ["5"],
-  returnPeriodSelected: "",
   returnPeriodActive: [],
   historyLocation: [],
 };
