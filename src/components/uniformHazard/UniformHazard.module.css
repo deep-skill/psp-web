@@ -15,6 +15,15 @@
   flex-direction: column;
 }
 
+.uniformHazardContainer section,
+.uniformHazardContainer h3 {
+  padding: 0rem 2rem;
+}
+
+.uniformHazardContainer section h4 {
+  display: inline;
+}
+
 .uniformHazardContainer button {
   height: 35px;
   width: 65px;

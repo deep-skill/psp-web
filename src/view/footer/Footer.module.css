@@ -29,3 +29,10 @@
   font-size: 1.7rem;
   color: #999999;
 }
+
+@media (max-width: 600px) {
+  .footerContainer {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}

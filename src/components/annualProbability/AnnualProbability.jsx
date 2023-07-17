@@ -30,7 +30,7 @@ const AnnualProbability = () => {
   return (
     <div className={style.probabilityContainer}>
       <h3>Probabilidad Anual de Excedencia</h3>
-      <span>
+      <section>
         <h4>Periodos:</h4>
         <select name="byPeriod" onChange={handleChange}>
           <option value="" key={"seleccionar"}>
@@ -56,7 +56,7 @@ const AnnualProbability = () => {
             {period.toString() + "%"}
           </button>
         ))}
-      </span>
+      </section>
 
       <br />
       <div className={style.chartContainer}>

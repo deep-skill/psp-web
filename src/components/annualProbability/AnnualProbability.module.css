@@ -1,33 +1,42 @@
 .probabilityContainer .on {
-	border: solid;
-	border-color: var(--color-a);
+  border: solid;
+  border-color: var(--color-a);
 }
 .probabilityContainer .off {
-	border: solid;
-	background-color: var(--color-b);
-	border-color: var(--color-a);
+  border: solid;
+  background-color: var(--color-b);
+  border-color: var(--color-a);
 }
 
 .probabilityContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.probabilityContainer section,
+.probabilityContainer h3 {
+  padding: 0rem 2rem;
+}
+
+.probabilityContainer section h4 {
+  display: inline;
 }
 
 .chartContainer {
-	width: 85%;
+  width: 85%;
 }
 
 .probabilityContainer button {
-	height: 35px;
-	width: 50px;
-	margin: 2px;
+  height: 35px;
+  width: 50px;
+  margin: 2px;
 }
 
 .probabilityContainer select {
-	height: 32px;
-	width: 110px;
-	margin-left: 10px;
-	margin-right: 20px;
+  height: 32px;
+  width: 110px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
