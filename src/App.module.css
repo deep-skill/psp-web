@@ -26,8 +26,6 @@ body,
 .routes {
 	padding-top: var(--nav-bar-h);
 	min-height: calc(100vh - var(--nav-bar-h) - var(--footer-h));
-	padding-left: 1rem;
-	padding-right: 2rem;
 }
 
 button {
