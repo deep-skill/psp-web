@@ -10,7 +10,7 @@ const Landing = () => {
           <h1>Peligro Sìsmico en el Perù</h1>
           <p>
             ¡Bienvenido a nuestra plataforma de cálculo y visualización de
-            probabilidades sísmicas en Perú!{" "}
+            probabilidades sísmicas en Perú!
           </p>
         </header>
         <section>

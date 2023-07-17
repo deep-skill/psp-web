@@ -52,7 +52,7 @@ const UniformHazard = () => {
   return (
     <div className={style.probabilityContainer}>
       <h3>Espectro de Peligro Uniforme y Espectro de Diseño</h3>
-      <span>
+      <section>
         <h4>Periodo de retorno en años:</h4>
         <input
           type="number"
@@ -77,9 +77,9 @@ const UniformHazard = () => {
             {button}
           </button>
         ))}
-      </span>
+      </section>
 
-      <span>
+      <section>
         <h4>Periodos:</h4>
         <select value={normSelected} name="selectNorm" onChange={handleChange}>
           <option value="">Seleccionar norma</option>
@@ -98,7 +98,7 @@ const UniformHazard = () => {
             </option>
           ))}
         </select>
-      </span>
+      </section>
 
       <br />
       <DesignSpectrumChart />
