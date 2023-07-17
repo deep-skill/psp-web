@@ -1,13 +1,15 @@
 .footerContainer {
-	height: var(--footer-h);
-	width: 100vw;
-	background-color: black;
-	display: flex;
+  height: var(--footer-h);
+  width: 100vw;
+  background-color: black;
+  display: flex;
   justify-content: center;
   align-items: flex-start;
+  position: relative;
+  z-index: 10;
 }
 .footerContainer div {
-	width: 33.3vw;
+  width: 33.3vw;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -15,15 +17,15 @@
   align-items: center;
 }
 .footerContainer span {
-	margin: 0;
-	margin-top: 0.6rem;
+  margin: 0;
+  margin-top: 0.6rem;
 }
 .footerContainer p {
-	margin: 0;
-	margin-left: 0.4rem;
-	color: #999999;
+  margin: 0;
+  margin-left: 0.4rem;
+  color: #999999;
 }
 .footerContainer b {
-	font-size: 1.7rem;
-	color: #999999;
+  font-size: 1.7rem;
+  color: #999999;
 }

@@ -1,0 +1,32 @@
+.landingContainer {
+    background: linear-gradient(rgba(5, 7, 12, 0.3), rgba(5, 7, 12, 0.3)), url(/Sismógrafo.png) no-repeat fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.landingContainer header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem;
+}
+
+.landingContainer p{
+    text-align: center;
+}
+
+.landingContainer section {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 50%;
+    gap: 1rem;
+    padding: 8rem 5rem ;
+}
+
+
