@@ -18,7 +18,7 @@ const NavBar = () => {
 			</Link>
 			{location.pathname !== "/Graphic" && (
 				<Link to="/Graphic">
-					<button className={style.buttonGraphic}>Hazard seismic</button>
+					<button className={style.buttonGraphic}>Seleccionar Coordenadas</button>
 				</Link>
 			)}
 		</div>
