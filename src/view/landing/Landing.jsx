@@ -7,7 +7,7 @@ const Landing = () => {
     <>
       <div className={style.landingContainer}>
         <header>
-          <h1>Peligro Sìsmico en el Perù</h1>
+          <h1>Peligro Sísmico en el Perú</h1>
           <p>
             ¡Bienvenido a nuestra plataforma de cálculo y visualización de
             probabilidades sísmicas en Perú!
