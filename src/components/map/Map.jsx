@@ -30,7 +30,7 @@ const Map = forwardRef(({ savedLocation, handleClickSelect, handleClose }, ref) 
 	};
 
 	const handleResetClick = () => {
-		setLocation({ lat: -12.1, lng: -77.1 });
+		setLocation({ lat: -12.1, lng: -77 });
 	};
 
 	const handleChange = (event) => {
@@ -55,7 +55,7 @@ const Map = forwardRef(({ savedLocation, handleClickSelect, handleClose }, ref) 
 			mapRef.current.on("click", handleMapClick);
 			markerRef.current.addTo(mapRef.current);
 		}
-		if(location.lat.length === 0) setLocation({ lat: -12.1, lng: -77.1 });
+		if(location.lat.length === 0) setLocation({ lat: -12.1, lng: -77});
 
 		mapRef.current.setView([location.lat, location.lng]);
 		markerRef.current.setLatLng([location.lat, location.lng]);

@@ -88,6 +88,9 @@ export const slice = createSlice({
       state.returnPeriodActive = [];
       state.clearReturnPeriodChart = !state.clearReturnPeriodChart;
     },
+    resultNormAndSoilType: (state, {payload}) => {
+      state.location.designSpectrum.push({[payload.standardType]:{[payload.soilType]: payload.data}})
+    },
   },
 });
 export const {
@@ -101,6 +104,7 @@ export const {
   inputReturnPeriod,
   selectReturnPeriod,
   resultReturnPeriod,
-  deleteReturnPeriod
+  deleteReturnPeriod,
+  resultNormAndSoilType
 } = slice.actions;
 export default slice.reducer;

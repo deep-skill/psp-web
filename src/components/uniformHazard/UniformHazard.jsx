@@ -10,12 +10,13 @@ import { useEffect, useState } from "react";
 import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
 import DesignSpectrumChart from "../chartsComponents/desingSpectrumChart/DesignSpectrumChart";
 import requestToHazardSpectrum from "../../Helpers/backendRequests/requestToHazardSpectrum";
+import requestToDesignSpectrum from "../../Helpers/backendRequests/requestToDesignSpectrum"
 
 
 const UniformHazard = () => {
   const dispatch = useDispatch();
 
-  const [inputPeriod, serInputPeriod] = useState("10");
+  const [inputPeriod, setInputPeriod] = useState("10");
 
   
   const id = useSelector((state) => state.slice.location.id);
@@ -38,18 +39,35 @@ const UniformHazard = () => {
 
       const handleDelete = ()=>{
         dispatch(deleteReturnPeriod())
-        serInputPeriod("10")
+        setInputPeriod("10")
+        dispatch(selectNorm(""))
+        dispatch(selectSoil(""))
       } 
 
   const norms = useSelector((state) => state.slice.norms);
   const soils = useSelector((state) => state.slice.soils);
   const normSelected = useSelector((state) => state.slice.normSelected);
   const soilSelected = useSelector((state) => state.slice.soilSelected);
+  const designSpectrum = useSelector(
+    (state) => state.slice.location.designSpectrum
+    );
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    const action = { selectNorm, selectSoil };
-    dispatch(action[name](value));
+  const handleChangeNorm = (event) => {
+    const { value } = event.target;
+        if (value) {
+          dispatch(selectNorm(value));
+        }
+    
+  };
+
+  const handleChangeSoilType = (event) => {
+    const { value } = event.target;
+        if (value) {
+          dispatch(selectSoil(value));
+          if(designSpectrum.some(norm => normSelected in norm && value in norm[normSelected])) return;
+          dispatch(requestToDesignSpectrum(id,normSelected, value))
+        }
+    
   };
 
   useEffect(() => {
@@ -64,7 +82,7 @@ const UniformHazard = () => {
         <input
           type="number"
           value={inputPeriod}
-          onChange={(event) => serInputPeriod(event.target.value)}
+          onChange={(event) => setInputPeriod(event.target.value)}
         />
         <button value={inputPeriod} onClick={handlePeriod}>
           Calcular
@@ -92,7 +110,7 @@ const UniformHazard = () => {
 
       <section>
         <h4>Periodos:</h4>
-        <select value={normSelected} name="selectNorm" onChange={handleChange}>
+        <select value={normSelected} name="selectNorm" onChange={handleChangeNorm}>
           <option value="">Seleccionar norma</option>
           {norms?.map((norm) => (
             <option value={norm.value} key={norm.value}>
@@ -101,7 +119,7 @@ const UniformHazard = () => {
           ))}
         </select>
 
-        <select value={soilSelected} name="selectSoil" onChange={handleChange}>
+        <select value={soilSelected} name="selectSoil" onChange={handleChangeSoilType}>
           <option value="">Seleccionar tipo de suelo</option>
           {soils?.map((soil) => (
             <option value={soil.value} key={soil.value}>

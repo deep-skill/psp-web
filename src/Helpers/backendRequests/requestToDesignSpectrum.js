@@ -1,23 +1,25 @@
 import axios from "axios";
+import { resultNormAndSoilType } from "../../redux/actions";
 
-const requestToDesignSpectrum = async (location, standardType, soilType) => {
-  try {
-    const { data } = await axios(
-      `/designspectrum?location=${location}&standardType=${standardType}&soilType=${soilType}`
-    );
-    const series = [];
+const requestToDesignSpectrum = (location, standardType, soilType) => {
+  return async (dispatch) =>{  
+    try {
+      const { data } = await axios(
+        `/designspectrum?location=${location}&standardType=${standardType}&soilType=${soilType}`
+      );
+      const series = [];
 
-    data.data.map((value) => {
-      series.push([
-        Math.log10(parseFloat(value.x)),
-        Math.log10(parseFloat(value.y)),
-      ]);
-    });
+      data.data.map((value) => {
+        series.push([parseFloat(value.x),parseFloat(value.y)]);
+      });
 
-    return series;
-  } catch (error) {
-    console.log(error);
-  }
+      const result = { standardType: standardType, soilType: soilType, data: series };
+
+      return dispatch(resultNormAndSoilType(result));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export default requestToDesignSpectrum;
