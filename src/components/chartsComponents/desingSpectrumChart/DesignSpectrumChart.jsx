@@ -14,6 +14,10 @@ const DesignSpectrumChart = () => {
     (state) => state.slice.returnPeriodActive
   );
 
+  const clearReturnPeriodChart = useSelector(
+    (state) => state.slice.clearReturnPeriodChart
+  );
+
   useEffect(() => {
     if (chartRef.current) {
       for (let i = 0; i < chartRef.current.series.length; i++) {
@@ -45,14 +49,24 @@ const DesignSpectrumChart = () => {
     chartRef.current = chart;
   }, []);
 
+  useEffect(() => {
+    clearChart(chartRef.current)
+  }, [clearReturnPeriodChart]);
+
   const updateSerie = (dataserie, chart) => {
     chart.addSeries(dataserie);
   };
 
   const removeSerie = (index, chart) => {
-    console.log(chart.series);
     chart.series[index].remove();
   };
+
+  const clearChart = (chart) =>{
+    while (chart.series.length > 0) {
+      chart.series[0].remove();
+    }
+    console.log(chart.series);
+  }
 
   return <div id="chart-container">{/* Renderizar el gráfico */}</div>;
 };

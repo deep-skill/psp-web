@@ -15,6 +15,7 @@ const initialState = {
   soils: null,
   periodSelected: 0,
   dampingSelected: ["5"],
+  clearReturnPeriodChart: false,
   returnPeriodActive: [],
   historyLocation: [],
 };
@@ -83,6 +84,10 @@ export const slice = createSlice({
     resultReturnPeriod: (state, { payload }) => {
       state.location.hazardSpectrum[payload.returnPeriod] = payload.data;
     },
+    deleteReturnPeriod: (state,) => {
+      state.returnPeriodActive = [];
+      state.clearReturnPeriodChart = !state.clearReturnPeriodChart;
+    },
   },
 });
 export const {
@@ -96,5 +101,6 @@ export const {
   inputReturnPeriod,
   selectReturnPeriod,
   resultReturnPeriod,
+  deleteReturnPeriod
 } = slice.actions;
 export default slice.reducer;
