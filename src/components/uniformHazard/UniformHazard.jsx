@@ -4,6 +4,7 @@ import {
   selectNorm,
   selectSoil,
   selectReturnPeriod,
+  deleteReturnPeriod
 } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { getStandards } from "../../Helpers/backendRequests/requestToStandards";
@@ -16,23 +17,29 @@ const UniformHazard = () => {
 
   const [inputPeriod, serInputPeriod] = useState("10");
 
-  const handlePeriod = (event) => {
-    const { value } = event.target;
-    if (value) {
-      dispatch(selectReturnPeriod(value));
-      if (value in hazardSpectrum) return;
-      dispatch(requestToHazardSpectrum(id, value));
-    }
-  };
-
+  
   const id = useSelector((state) => state.slice.location.id);
   const hazardSpectrum = useSelector(
     (state) => state.slice.location.hazardSpectrum
-  );
-  const buttonsReturnPeriod = [475, 1000, 2475];
-  const returnPeriodActive = useSelector(
-    (state) => state.slice.returnPeriodActive
-  );
+    );
+    const buttonsReturnPeriod = [475, 1000, 2475];
+    const returnPeriodActive = useSelector(
+      (state) => state.slice.returnPeriodActive
+      );
+      
+      const handlePeriod = (event) => {
+        const { value } = event.target;
+        if (value) {
+          dispatch(selectReturnPeriod(value));
+          if (value in hazardSpectrum) return;
+          dispatch(requestToHazardSpectrum(id, value));
+        }
+      };
+
+      const handleDelete = ()=>{
+        dispatch(deleteReturnPeriod())
+        serInputPeriod("10")
+      } 
 
   const norms = useSelector((state) => state.slice.norms);
   const soils = useSelector((state) => state.slice.soils);
@@ -61,6 +68,10 @@ const UniformHazard = () => {
         />
         <button value={inputPeriod} onClick={handlePeriod}>
           Calcular
+        </button>
+
+        <button onClick={handleDelete}>
+          Borrar datos
         </button>
 
         {buttonsReturnPeriod.map((button) => (
