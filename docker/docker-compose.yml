@@ -1,0 +1,43 @@
+services:
+
+  psp-web:
+    container_name: psp-web
+    image: nginx:1.25.4-alpine
+    ports:
+      - "3000:3000"
+    volumes:
+#      - ./../nginx/ssl:/etc/nginx/ssl
+      - ./../dist:/usr/share/nginx/html/
+      - ./../nginx/nginx.conf-local:/etc/nginx/nginx.conf
+    depends_on:
+      - local-psp-api
+      - local-psp-db
+
+  local-psp-api:
+    container_name: local-psp-api
+    image: "node:18-alpine"
+    working_dir: /home/node/app
+    volumes:
+      - ./../../psp-api/:/home/node/app/
+    ports:
+      - "3001:3001"
+    command: ["npm", "start"]
+    env_file:
+      - .env.dockercompose
+    depends_on:
+      - local-psp-db
+    restart: always
+
+  local-psp-db:
+    container_name: local-psp-db
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env.dockercompose
+    volumes:
+      - local-db-data:/var/lib/mysql
+
+volumes:
+  local-db-data:
+    name: local-db-data
