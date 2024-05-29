@@ -12,6 +12,8 @@ const AnnualProbability = () => {
   const periodsPercentage = setPeriodPercentage();
 
   const id = useSelector((state) => state.slice.location.id);
+  const lat = useSelector((state) => state.slice.location.lat);
+  const long = useSelector((state) => state.slice.location.lng);
   const dampingSelected = useSelector((state) => state.slice.dampingSelected);
   const exceedanceProbability = useSelector(
     (state) => state.slice.location.exceedanceProbability
@@ -22,7 +24,7 @@ const AnnualProbability = () => {
     if (value) {
       dispatch(selectPeriod(value));
       if (value in exceedanceProbability) return;
-      dispatch(requestToExceedanceProbability(id, value));
+      dispatch(requestToExceedanceProbability(id, value, lat, long));
     }
     dispatch(selectDamping(-1));
   };

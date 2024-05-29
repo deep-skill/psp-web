@@ -1,11 +1,11 @@
 import axios from "axios";
 import { resultPeriod } from "../../redux/actions";
 
-const requestToExceedanceProbability = (location, period) => {
+const requestToExceedanceProbability = (location, period, lat, long) => {
   return async (dispatch) => {
     try {
       const { data } = await axios(
-        `/eprobability?location=${location}&period=${period}`
+        `/eprobability?location=${location}&period=${period}&lat=${lat}&long=${long}`
       );
       const series = [];
 
