@@ -20,6 +20,8 @@ const UniformHazard = () => {
 
   
   const id = useSelector((state) => state.slice.location.id);
+  const lat = useSelector((state) => state.slice.location.lat);
+  const long = useSelector((state) => state.slice.location.lng);
   const hazardSpectrum = useSelector(
     (state) => state.slice.location.hazardSpectrum
     );
@@ -33,7 +35,7 @@ const UniformHazard = () => {
         if (value) {
           dispatch(selectReturnPeriod(value));
           if (value in hazardSpectrum) return;
-          dispatch(requestToHazardSpectrum(id, value));
+          dispatch(requestToHazardSpectrum(id, value, lat, long));
         }
       };
 
@@ -65,7 +67,7 @@ const UniformHazard = () => {
         if (value) {
           dispatch(selectSoil(value));
           if(designSpectrum.some(norm => normSelected in norm && value in norm[normSelected])) return;
-          dispatch(requestToDesignSpectrum(id,normSelected, value))
+          dispatch(requestToDesignSpectrum(id,normSelected, value, lat, long))
         }
     
   };

@@ -1,11 +1,11 @@
 import axios from "axios";
 import { resultReturnPeriod } from "../../redux/actions";
 
-const requestToHazardSpectrum = (location, tr) => {
+const requestToHazardSpectrum = (location, tr, lat, long) => {
   return async (dispatch) => {
     try {
       const { data } = await axios(
-        `/hazardspectrum?location=${location}&tr=${tr}`
+        `/hazardspectrum?location=${location}&tr=${tr}&lat=${lat}&long=${long}`
       );
       const series = [];
 
